@@ -6,9 +6,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.Color;
 
 public class telaInicial extends JFrame {
 
@@ -34,25 +31,12 @@ public class telaInicial extends JFrame {
 	 * Create the frame.
 	 */
 	public telaInicial() {
-		setTitle("Inicio");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 889, 548);
+		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JButton btnEncontroAleatorio = new JButton("Encontro Aleat\u00F3rio");
-		btnEncontroAleatorio.setBackground(Color.GREEN);
-		btnEncontroAleatorio.setFont(new Font("Tahoma", Font.PLAIN, 36));
-		btnEncontroAleatorio.setBounds(47, 37, 785, 186);
-		contentPane.add(btnEncontroAleatorio);
-		
-		JButton btnEncontroPlanejado = new JButton("Encontro Planejado");
-		btnEncontroPlanejado.setForeground(Color.WHITE);
-		btnEncontroPlanejado.setFont(new Font("Tahoma", Font.PLAIN, 36));
-		btnEncontroPlanejado.setBackground(Color.BLUE);
-		btnEncontroPlanejado.setBounds(47, 263, 785, 186);
-		contentPane.add(btnEncontroPlanejado);
 	}
+
 }

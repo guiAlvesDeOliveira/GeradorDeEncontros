@@ -49,7 +49,6 @@ public class telaInicial extends JFrame {
 		contentPane.add(btnEncontroAleatorio);
 		
 		JButton btnEncontroPlanejado = new JButton("Encontro Planejado");
-		btnEncontroPlanejado.setForeground(Color.WHITE);
 		btnEncontroPlanejado.setFont(new Font("Tahoma", Font.PLAIN, 36));
 		btnEncontroPlanejado.setBackground(Color.BLUE);
 		btnEncontroPlanejado.setBounds(47, 263, 785, 186);
