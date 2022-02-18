@@ -26,7 +26,8 @@ public class telaEncontroPlanejado extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtFQtdPlayer;
 	private JTextField txtFNvlPlayer;
-	private ButtonGroup bg = new ButtonGroup();
+	private ButtonGroup bgDificuldade = new ButtonGroup();
+	private ButtonGroup bgTerreno = new ButtonGroup();
 
 	/**
 	 * Launch the application.
@@ -127,10 +128,15 @@ public class telaEncontroPlanejado extends JFrame {
 		chbxEncontroUnico.setBounds(255, 117, 97, 23);
 		contentPane.add(chbxEncontroUnico);
 		
-		bg.add(rdbtnFacil);
-		bg.add(rdbtnMedio);
-		bg.add(rdbtnDificil);
-		bg.add(rdbtnMortal);
+		bgDificuldade.add(rdbtnFacil);
+		bgDificuldade.add(rdbtnMedio);
+		bgDificuldade.add(rdbtnDificil);
+		bgDificuldade.add(rdbtnMortal);
+		
+		bgTerreno.add(rdbtnPlanice);
+		bgTerreno.add(rdbtnCidade);
+		bgTerreno.add(rdbtnFloresta);
+		bgTerreno.add(rdbtnPantano);
 		
 	}
 }
