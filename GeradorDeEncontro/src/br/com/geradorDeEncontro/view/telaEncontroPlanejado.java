@@ -1,37 +1,32 @@
 package br.com.geradorDeEncontro.view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JRadioButton;
 import java.awt.GridLayout;
-import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
-import java.awt.CardLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.FormSpecs;
-import com.jgoodies.forms.layout.RowSpec;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JTextPane;
+import javax.swing.JCheckBox;
 
 public class telaEncontroPlanejado extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtFQtdPlayer;
 	private JTextField txtFNvlPlayer;
+	private ButtonGroup bg = new ButtonGroup();
 
 	/**
 	 * Launch the application.
@@ -54,11 +49,12 @@ public class telaEncontroPlanejado extends JFrame {
 	 */
 	public telaEncontroPlanejado() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 887, 538);
+		setBounds(100, 100, 892, 540);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
 		
 		txtFQtdPlayer = new JTextField();
 		txtFQtdPlayer.setBounds(56, 61, 127, 20);
@@ -70,8 +66,8 @@ public class telaEncontroPlanejado extends JFrame {
 		contentPane.add(lblQtdPlayers);
 		
 		JPanel panelDificuldade = new JPanel();
-		panelDificuldade.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		panelDificuldade.setBounds(56, 171, 180, 91);
+		panelDificuldade.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		panelDificuldade.setBounds(56, 117, 180, 91);
 		contentPane.add(panelDificuldade);
 		panelDificuldade.setLayout(new GridLayout(0, 2, 0, 0));
 		
@@ -88,15 +84,16 @@ public class telaEncontroPlanejado extends JFrame {
 		panelDificuldade.add(rdbtnMortal);
 		
 		JLabel lblDificuldade = new JLabel("Dificuldade");
-		lblDificuldade.setBounds(98, 146, 87, 14);
+		lblDificuldade.setBounds(66, 92, 87, 14);
 		contentPane.add(lblDificuldade);
 		
 		JButton btnGerarEncontro = new JButton("Gerar Encontro");
-		btnGerarEncontro.setBounds(225, 349, 230, 48);
+		btnGerarEncontro.setBounds(56, 226, 230, 48);
 		contentPane.add(btnGerarEncontro);
 		
 		JPanel panelTerrenos = new JPanel();
-		panelTerrenos.setBounds(432, 98, 306, 223);
+		panelTerrenos.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		panelTerrenos.setBounds(469, 36, 306, 223);
 		contentPane.add(panelTerrenos);
 		panelTerrenos.setLayout(new BoxLayout(panelTerrenos, BoxLayout.X_AXIS));
 		
@@ -109,6 +106,9 @@ public class telaEncontroPlanejado extends JFrame {
 		JRadioButton rdbtnFloresta = new JRadioButton("Floresta");
 		panelTerrenos.add(rdbtnFloresta);
 		
+		JRadioButton rdbtnPlanice = new JRadioButton("Planice");
+		panelTerrenos.add(rdbtnPlanice);
+		
 		JLabel lblNvlPlayers = new JLabel("Nivel dos Players");
 		lblNvlPlayers.setBounds(225, 36, 127, 14);
 		contentPane.add(lblNvlPlayers);
@@ -117,5 +117,20 @@ public class telaEncontroPlanejado extends JFrame {
 		txtFNvlPlayer.setColumns(10);
 		txtFNvlPlayer.setBounds(225, 61, 127, 20);
 		contentPane.add(txtFNvlPlayer);
+		
+		JTextPane textPane = new JTextPane();
+		textPane.setVisible(false);
+		textPane.setBounds(56, 298, 719, 190);
+		contentPane.add(textPane);
+		
+		JCheckBox chbxEncontroUnico = new JCheckBox("Encontro Unico");
+		chbxEncontroUnico.setBounds(255, 117, 97, 23);
+		contentPane.add(chbxEncontroUnico);
+		
+		bg.add(rdbtnFacil);
+		bg.add(rdbtnMedio);
+		bg.add(rdbtnDificil);
+		bg.add(rdbtnMortal);
+		
 	}
 }
