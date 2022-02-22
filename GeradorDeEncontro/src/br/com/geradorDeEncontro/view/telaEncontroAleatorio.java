@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -22,8 +23,9 @@ public class telaEncontroAleatorio extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtFQtdPlayer;
+	private JTextField txtFNvlPlayer;
+	private ButtonGroup bgDificuldade = new ButtonGroup();
 
 	/**
 	 * Launch the application.
@@ -78,19 +80,19 @@ public class telaEncontroAleatorio extends JFrame {
 		lblQtdPlayers.setBounds(37, 26, 127, 14);
 		contentPane.add(lblQtdPlayers);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(37, 51, 127, 20);
-		contentPane.add(textField);
+		txtFQtdPlayer = new JTextField();
+		txtFQtdPlayer.setColumns(10);
+		txtFQtdPlayer.setBounds(37, 51, 127, 20);
+		contentPane.add(txtFQtdPlayer);
 		
 		JLabel lblNvlPlayers = new JLabel("Nivel dos Players");
 		lblNvlPlayers.setBounds(206, 26, 127, 14);
 		contentPane.add(lblNvlPlayers);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(206, 51, 127, 20);
-		contentPane.add(textField_1);
+		txtFNvlPlayer = new JTextField();
+		txtFNvlPlayer.setColumns(10);
+		txtFNvlPlayer.setBounds(206, 51, 127, 20);
+		contentPane.add(txtFNvlPlayer);
 		
 		JButton btnGerarEncontro = new JButton("Gerar Encontro");
 		btnGerarEncontro.setBounds(37, 221, 230, 48);
@@ -104,5 +106,25 @@ public class telaEncontroAleatorio extends JFrame {
 		JCheckBox chbxEncontroUnico = new JCheckBox("Encontro Unico");
 		chbxEncontroUnico.setBounds(236, 152, 97, 23);
 		contentPane.add(chbxEncontroUnico);
+		
+		bgDificuldade.add(rdbtnFacil);
+		bgDificuldade.add(rdbtnMedio);
+		bgDificuldade.add(rdbtnDificil);
+		bgDificuldade.add(rdbtnMortal);
+		
+		
+		
+		
+		if (rdbtnFacil.isEnabled()) {
+			
+		}else if(rdbtnMedio.isEnabled()) {
+			
+		}else if(rdbtnDificil.isEnabled()) {
+			
+		}else if(rdbtnMortal.isEnabled()) {
+			
+		}
+		
+		
 	}
 }

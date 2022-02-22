@@ -8,6 +8,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+
+import br.com.geradorDeEncontro.controller.CalculadoraDeDificuldade;
+import br.com.geradorDeEncontro.model.Encontro;
+
 import java.awt.Color;
 import javax.swing.JRadioButton;
 import java.awt.GridLayout;
@@ -16,8 +20,12 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
 import javax.swing.JCheckBox;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JFormattedTextField;
 
-public class telaEncontroPlanejado extends JFrame {
+
+public class telaEncontroPlanejado extends JFrame implements CalculadoraDeDificuldade {
 
 	/**
 	 * 
@@ -119,10 +127,10 @@ public class telaEncontroPlanejado extends JFrame {
 		txtFNvlPlayer.setBounds(225, 61, 127, 20);
 		contentPane.add(txtFNvlPlayer);
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setVisible(false);
-		textPane.setBounds(56, 298, 719, 190);
-		contentPane.add(textPane);
+		JTextPane txtResultado = new JTextPane();
+		txtResultado.setVisible(false);
+		txtResultado.setBounds(56, 298, 719, 190);
+		contentPane.add(txtResultado);
 		
 		JCheckBox chbxEncontroUnico = new JCheckBox("Encontro Unico");
 		chbxEncontroUnico.setBounds(255, 117, 97, 23);
@@ -138,5 +146,19 @@ public class telaEncontroPlanejado extends JFrame {
 		bgTerreno.add(rdbtnFloresta);
 		bgTerreno.add(rdbtnPantano);
 		
+		JFormattedTextField formattedTextField = new JFormattedTextField();
+		formattedTextField.setBounds(334, 147, 97, 14);
+		contentPane.add(formattedTextField);
+		
+		Encontro encontro = new Encontro();
+		
+		btnGerarEncontro.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//encontro.setQtdPlayer(txtFQtdPlayer.getText());
+			}
+		});
+		
+	
 	}
 }
