@@ -1,14 +1,23 @@
 package br.com.geradorDeEncontro.controller;
-import br.com.geradorDeEncontro.view.telaEncontroPlanejado;
 import br.com.geradorDeEncontro.model.Encontro;
 
-public interface CalculadoraDeDificuldade {
+public class CalculadoraDeDificuldade {
 	
-	public static void DefineDificuldade() {
+	public boolean DefineDificuldade(String dificuldade, int nvlPlayer, int qtdPlayer) {
 		
-		Encontro encontro = new Encontro();
-	/*	if (rdbtnFacil.isSelected()) {
-			System.out.println("deu certo");
-		}	*/
+		if(dificuldade != null && qtdPlayer > 0 && nvlPlayer > 0) {
+			Encontro encontro = new Encontro(dificuldade, nvlPlayer, qtdPlayer);
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	public void CalculaExperienciaPlayer() {
+		
+	}
+	
+	public void CalclulaExperienciaMonstro() {
+		
 	}
 }

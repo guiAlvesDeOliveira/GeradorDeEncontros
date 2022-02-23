@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
@@ -23,9 +24,11 @@ import javax.swing.JCheckBox;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JFormattedTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
-public class telaEncontroPlanejado extends JFrame implements CalculadoraDeDificuldade {
+public class telaEncontroPlanejado extends JFrame {
 
 	/**
 	 * 
@@ -97,6 +100,35 @@ public class telaEncontroPlanejado extends JFrame implements CalculadoraDeDificu
 		contentPane.add(lblDificuldade);
 		
 		JButton btnGerarEncontro = new JButton("Gerar Encontro");
+		btnGerarEncontro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int nvlPlayer = Integer.parseInt(txtFNvlPlayer.getText());
+				int qtdPlayer = Integer.parseInt(txtFQtdPlayer.getText());
+				String dificuldade = null;
+				if (rdbtnFacil.isSelected()) {
+					dificuldade = "facil";
+				}else if(rdbtnMedio.isSelected()) {
+					dificuldade = "medio";
+				}else if(rdbtnDificil.isSelected()) {
+					dificuldade = "dificil";
+				}else if(rdbtnMortal.isSelected()) {
+					dificuldade = "mortal";
+				}
+				boolean sucesso = true;
+				try {
+					CalculadoraDeDificuldade calculadora = new CalculadoraDeDificuldade();
+					calculadora.DefineDificuldade(dificuldade, nvlPlayer, qtdPlayer);
+					if (sucesso==true) {
+						JOptionPane.showMessageDialog(null, "deu boa");
+					}else {
+						JOptionPane.showMessageDialog(null, "não deu boa");
+					}
+						
+				}catch (Exception ex){
+					JOptionPane.showMessageDialog(null, "Erro" + ex);
+				}
+			}
+		});
 		btnGerarEncontro.setBounds(56, 226, 230, 48);
 		contentPane.add(btnGerarEncontro);
 		
@@ -152,12 +184,7 @@ public class telaEncontroPlanejado extends JFrame implements CalculadoraDeDificu
 		
 		Encontro encontro = new Encontro();
 		
-		btnGerarEncontro.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				//encontro.setQtdPlayer(txtFQtdPlayer.getText());
-			}
-		});
+		
 		
 	
 	}
