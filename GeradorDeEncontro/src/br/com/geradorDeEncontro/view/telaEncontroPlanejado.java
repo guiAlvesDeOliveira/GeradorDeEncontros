@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 import br.com.geradorDeEncontro.controller.CriadorDeEncontro;
+
 import java.awt.Color;
 import javax.swing.JRadioButton;
 import java.awt.GridLayout;
