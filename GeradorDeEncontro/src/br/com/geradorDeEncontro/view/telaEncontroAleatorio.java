@@ -3,18 +3,23 @@ package br.com.geradorDeEncontro.view;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+
+import br.com.geradorDeEncontro.controller.CriadorDeEncontro;
 
 public class telaEncontroAleatorio extends JFrame {
 
@@ -94,10 +99,6 @@ public class telaEncontroAleatorio extends JFrame {
 		txtFNvlPlayer.setBounds(206, 51, 127, 20);
 		contentPane.add(txtFNvlPlayer);
 		
-		JButton btnGerarEncontro = new JButton("Gerar Encontro");
-		btnGerarEncontro.setBounds(37, 221, 230, 48);
-		contentPane.add(btnGerarEncontro);
-		
 		JTextPane textPane = new JTextPane();
 		textPane.setVisible(false);
 		textPane.setBounds(37, 288, 719, 190);
@@ -107,24 +108,48 @@ public class telaEncontroAleatorio extends JFrame {
 		chbxEncontroUnico.setBounds(236, 152, 97, 23);
 		contentPane.add(chbxEncontroUnico);
 		
+		JButton btnGerarEncontro = new JButton("Gerar Encontro");
+		btnGerarEncontro.setBounds(37, 221, 230, 48);
+		btnGerarEncontro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					int nvlPlayer = Integer.parseInt(txtFNvlPlayer.getText());
+					int qtdPlayer = Integer.parseInt(txtFQtdPlayer.getText());
+					String dificuldade = null;
+					if(rdbtnFacil.isSelected()) {
+						dificuldade = "facil";
+					}else if (rdbtnMedio.isSelected()) {
+						dificuldade = "medio";
+					}else if (rdbtnDificil.isSelected()) {
+						dificuldade = "dificil";
+					}else if (rdbtnMortal.isSelected()) {
+						dificuldade = "mortal";
+					}
+					
+					boolean encontroUnico = false;
+					if(chbxEncontroUnico.isSelected()) {
+						encontroUnico = true;
+					}
+					
+					boolean sucesso = false;
+					try {
+						CriadorDeEncontro criador = new CriadorDeEncontro();
+						sucesso = criador.criaEncontro(dificuldade, nvlPlayer, qtdPlayer, encontroUnico);
+						if (sucesso==true) {
+							JOptionPane.showMessageDialog(null, "deu boa");
+						}else {
+							JOptionPane.showMessageDialog(null, "deu ruim");
+						}
+					}catch (Exception ex) {
+						JOptionPane.showMessageDialog(null, "Erro" + ex.getMessage());
+					}
+				}
+			});
+		contentPane.add(btnGerarEncontro);
+		
 		bgDificuldade.add(rdbtnFacil);
 		bgDificuldade.add(rdbtnMedio);
 		bgDificuldade.add(rdbtnDificil);
 		bgDificuldade.add(rdbtnMortal);
-		
-		
-		
-		
-		if (rdbtnFacil.isEnabled()) {
-			
-		}else if(rdbtnMedio.isEnabled()) {
-			
-		}else if(rdbtnDificil.isEnabled()) {
-			
-		}else if(rdbtnMortal.isEnabled()) {
-			
-		}
-		
 		
 	}
 }

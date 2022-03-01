@@ -10,9 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-import br.com.geradorDeEncontro.controller.CalculadoraDeDificuldade;
-import br.com.geradorDeEncontro.model.Encontro;
-
+import br.com.geradorDeEncontro.controller.CriadorDeEncontro;
 import java.awt.Color;
 import javax.swing.JRadioButton;
 import java.awt.GridLayout;
@@ -21,8 +19,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
 import javax.swing.JCheckBox;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.JFormattedTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -98,40 +94,7 @@ public class telaEncontroPlanejado extends JFrame {
 		JLabel lblDificuldade = new JLabel("Dificuldade");
 		lblDificuldade.setBounds(66, 92, 87, 14);
 		contentPane.add(lblDificuldade);
-		
-		JButton btnGerarEncontro = new JButton("Gerar Encontro");
-		btnGerarEncontro.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int nvlPlayer = Integer.parseInt(txtFNvlPlayer.getText());
-				int qtdPlayer = Integer.parseInt(txtFQtdPlayer.getText());
-				String dificuldade = null;
-				if (rdbtnFacil.isSelected()) {
-					dificuldade = "facil";
-				}else if(rdbtnMedio.isSelected()) {
-					dificuldade = "medio";
-				}else if(rdbtnDificil.isSelected()) {
-					dificuldade = "dificil";
-				}else if(rdbtnMortal.isSelected()) {
-					dificuldade = "mortal";
-				}
-				boolean sucesso = true;
-				try {
-					CalculadoraDeDificuldade calculadora = new CalculadoraDeDificuldade();
-					calculadora.DefineDificuldade(dificuldade, nvlPlayer, qtdPlayer);
-					if (sucesso==true) {
-						JOptionPane.showMessageDialog(null, "deu boa");
-					}else {
-						JOptionPane.showMessageDialog(null, "não deu boa");
-					}
-						
-				}catch (Exception ex){
-					JOptionPane.showMessageDialog(null, "Erro" + ex);
-				}
-			}
-		});
-		btnGerarEncontro.setBounds(56, 226, 230, 48);
-		contentPane.add(btnGerarEncontro);
-		
+
 		JPanel panelTerrenos = new JPanel();
 		panelTerrenos.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		panelTerrenos.setBounds(469, 36, 306, 223);
@@ -150,6 +113,61 @@ public class telaEncontroPlanejado extends JFrame {
 		JRadioButton rdbtnPlanice = new JRadioButton("Planice");
 		panelTerrenos.add(rdbtnPlanice);
 		
+		JCheckBox chbxEncontroUnico = new JCheckBox("Encontro Unico");
+		chbxEncontroUnico.setBounds(255, 117, 97, 23);
+		contentPane.add(chbxEncontroUnico);
+		
+		JButton btnGerarEncontro = new JButton("Gerar Encontro");
+		btnGerarEncontro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				int nvlPlayer = Integer.parseInt(txtFNvlPlayer.getText());
+				int qtdPlayer = Integer.parseInt(txtFQtdPlayer.getText());
+				String dificuldade = null;
+				if (rdbtnFacil.isSelected()) {
+					dificuldade = "facil";
+				}else if(rdbtnMedio.isSelected()) {
+					dificuldade = "medio";
+				}else if(rdbtnDificil.isSelected()) {
+					dificuldade = "dificil";
+				}else if(rdbtnMortal.isSelected()) {
+					dificuldade = "mortal";
+				}
+				
+				String terreno = null;
+				if (rdbtnCidade.isSelected()) {
+					terreno = "cidade";
+				}else if (rdbtnFloresta.isSelected()) {
+					terreno = "floresta";
+				}else if (rdbtnPantano.isSelected()) {
+					terreno = "pantano";
+				}else if (rdbtnPlanice.isSelected()) {
+					terreno = "planice";
+				}
+				
+				boolean encontroUnico = false;
+				if (chbxEncontroUnico.isSelected()) {
+					encontroUnico = true;
+				}
+				
+				boolean sucesso = false;
+				try {
+					CriadorDeEncontro criador = new CriadorDeEncontro();
+					sucesso = criador.criaEncontro(dificuldade, nvlPlayer, qtdPlayer, terreno, encontroUnico);
+					if (sucesso==true) {
+						JOptionPane.showMessageDialog(null, "deu boa");
+					}else {
+						JOptionPane.showMessageDialog(null, "não deu boa");
+					}
+						
+				}catch (Exception ex){
+					JOptionPane.showMessageDialog(null, "Erro" + ex.getMessage());
+				}
+			}
+		});
+		btnGerarEncontro.setBounds(56, 226, 230, 48);
+		contentPane.add(btnGerarEncontro);
+		
 		JLabel lblNvlPlayers = new JLabel("Nivel dos Players");
 		lblNvlPlayers.setBounds(225, 36, 127, 14);
 		contentPane.add(lblNvlPlayers);
@@ -164,9 +182,7 @@ public class telaEncontroPlanejado extends JFrame {
 		txtResultado.setBounds(56, 298, 719, 190);
 		contentPane.add(txtResultado);
 		
-		JCheckBox chbxEncontroUnico = new JCheckBox("Encontro Unico");
-		chbxEncontroUnico.setBounds(255, 117, 97, 23);
-		contentPane.add(chbxEncontroUnico);
+		
 		
 		bgDificuldade.add(rdbtnFacil);
 		bgDificuldade.add(rdbtnMedio);
@@ -182,7 +198,7 @@ public class telaEncontroPlanejado extends JFrame {
 		formattedTextField.setBounds(334, 147, 97, 14);
 		contentPane.add(formattedTextField);
 		
-		Encontro encontro = new Encontro();
+		
 		
 		
 		
