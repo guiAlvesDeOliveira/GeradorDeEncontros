@@ -2,8 +2,8 @@ package DTO;
 
 public class MonstroDTO {
 
-	private int id, classeDeArmadura, qtdDadosVida, vidaExtra, forca, destreza, constituicao, inteligencia, sabedoria, carisma,
-		dificuldade;
+	private int id, classeDeArmadura, qtdDadosVida, vidaExtra, forca, destreza, constituicao, inteligencia, sabedoria, carisma;
+	private float dificuldade;
 	private String nome, tamanho, tipo, dadoDeVida, testeResistencia, pericias, vulnerabilidades, resistencia, imunidade, imunidadeCondicao,
 		sentidos, lingua, acoes, magias, acoesLendarias;
 	
@@ -67,10 +67,10 @@ public class MonstroDTO {
 	public void setCarisma(int carisma) {
 		this.carisma = carisma;
 	}
-	public int getDificuldade() {
+	public float getDificuldade() {
 		return dificuldade;
 	}
-	public void setDificuldade(int dificuldade) {
+	public void setDificuldade(float dificuldade) {
 		this.dificuldade = dificuldade;
 	}
 	public String getNome() {
