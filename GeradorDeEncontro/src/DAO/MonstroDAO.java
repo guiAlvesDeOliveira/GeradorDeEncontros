@@ -21,7 +21,7 @@ public class MonstroDAO {
 		String sql = "insert into monstro (nome, tamanho, tipo, classeDeArmadura, dadoDeVida, quantidadeDadosVida, vidaExtra, "
 				+ "forca, destreza, constituicao, inteligencia, sabedoria, carisma, testeResistencia, pericias, vulnerabilidade, "
 				+ "resistencia, imunidade, imunidadeCondicao, sentidos, lingua, dificuldade, acoes, magias, acoesLendarias) values "
-				+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		conn = new ConexaoDAO().conectaDB();
 		
 		try {
@@ -49,7 +49,7 @@ public class MonstroDAO {
 			pstm.setString(21, objMonstroDto.getLingua());
 			pstm.setFloat(22, objMonstroDto.getDificuldade());
 			pstm.setString(23, objMonstroDto.getAcoes());
-			pstm.setString(23, objMonstroDto.getMagias());
+			pstm.setString(24, objMonstroDto.getMagias());
 			pstm.setString(25, objMonstroDto.getAcoesLendarias());
 			
 			pstm.execute();
