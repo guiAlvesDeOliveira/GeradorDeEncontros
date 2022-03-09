@@ -25,6 +25,7 @@ public class MonstroDAO {
 		conn = new ConexaoDAO().conectaDB();
 		
 		try {
+			objMonstroDto.acertaDificuldade();
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, objMonstroDto.getNome());
 			pstm.setString(2, objMonstroDto.getTamanho());
@@ -52,44 +53,45 @@ public class MonstroDAO {
 			pstm.setString(24, objMonstroDto.getMagias());
 			pstm.setString(25, objMonstroDto.getAcoesLendarias());
 			
+
 			pstm.execute();
+			JOptionPane.showMessageDialog(null, "Monstro cadastrado com sucesso");
 			pstm.close();
 			
 		} catch (SQLException erro) {
 			JOptionPane.showMessageDialog(null, "MonstroDAO cadastrar: " + erro);
-		}
+		} 
 		
 	}
 	
 	public ArrayList<MonstroDTO> consultarMonstro(){
-		String sql = "select * from monstro;";
-		
+		MonstroDTO objMonstroDTO = new MonstroDTO();
+		String sql = "select * from vw_ConsultaMonstro where dificuldade < " + objMonstroDTO.getDificuldade() + ";";
+		conn = new ConexaoDAO().conectaDB();
+
 		try {
 			pstm = conn.prepareStatement(sql);
 			rs = pstm.executeQuery();
-			conn = new ConexaoDAO().conectaDB();
 			
 			while (rs.next()) {
 				MonstroDTO objMonstroDto = new MonstroDTO();
 				objMonstroDto.setId(rs.getInt("Id"));
 				objMonstroDto.setNome(rs.getString("nome"));
+				objMonstroDTO.setQtdDadosVida(rs.getInt("quantidadeDadosVida"));
+				objMonstroDTO.setVidaExtra(rs.getInt("vidaExtra"));
+				objMonstroDTO.setDadoDeVida(rs.getString("dadoDeVida"));
+				objMonstroDTO.setDificuldade(rs.getInt("dificuldade"));
 				
 				lista.add(objMonstroDto);
 				
 			}
 		} catch (SQLException erro) {
-			JOptionPane.showMessageDialog(null, "FuncionarioDAO consultar: " + erro);
+			JOptionPane.showMessageDialog(null, "MonstroDAO consultar: " + erro);
 		}
-	    
 		return lista;
 
 	}
 	
-	/*public void validaEntrada() {
-		MonstroDTO objMonstroDto = new MonstroDTO();
-		if(objMonstroDto.getDificuldade() == 0.5) {
-			objMonstroDto.setDificuldade(25);
-		}
-	}*/
+
 	
 }

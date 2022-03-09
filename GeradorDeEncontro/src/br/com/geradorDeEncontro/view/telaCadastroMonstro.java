@@ -2,6 +2,7 @@ package br.com.geradorDeEncontro.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.TextArea;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -274,7 +275,7 @@ public class telaCadastroMonstro extends JFrame {
 		contentPane.add(lbDificuldade);
 		
 		JComboBox cmbDificuldade = new JComboBox();
-		cmbDificuldade.setModel(new DefaultComboBoxModel(new String[] {"1/4", "1/2", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"}));
+		cmbDificuldade.setModel(new DefaultComboBoxModel(new String[] {"1/8", "1/4", "1/2", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"}));
 		cmbDificuldade.setBounds(290, 260, 128, 22);
 		contentPane.add(cmbDificuldade);
 		
@@ -303,6 +304,22 @@ public class telaCadastroMonstro extends JFrame {
 		JTextPane txtPAcoesLendarias = new JTextPane();
 		txtPAcoesLendarias.setBounds(573, 330, 157, 114);
 		contentPane.add(txtPAcoesLendarias);
+		
+		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				limpar();
+				cmbDadoDeVida.setSelectedIndex(0);
+				cmbDificuldade.setSelectedIndex(0);
+				cmbTamanho.setSelectedIndex(0);
+				txtPAcoes.setText("");
+				txtPAcoesLendarias.setText("");
+				txtPMagia.setText("");
+			}
+		});
+		btnLimpar.setBounds(367, 459, 169, 35);
+		contentPane.add(btnLimpar);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
@@ -338,11 +355,13 @@ public class telaCadastroMonstro extends JFrame {
 				inteligencia = Integer.parseInt(txtFInteligencia.getText());
 				sabedoria = Integer.parseInt(txtFSabedoria.getText());
 				carisma = Integer.parseInt(txtFCarisma.getText());
-				if (cmbDificuldade.getSelectedItem() == "1/4" || cmbDificuldade.getSelectedItem()== "1/2") {
+				if (cmbDificuldade.getSelectedItem() == "1/4" || cmbDificuldade.getSelectedItem()== "1/2" || cmbDificuldade.getSelectedItem() == "1/8") {
 					if (cmbDificuldade.getSelectedItem() == "1/4") {
 						dificuldadeConvertida = "0.25f";
-					}else {
+					}else if(cmbDificuldade.getSelectedItem() == "1/2") {
 						dificuldadeConvertida = "0.5f";
+					}else {
+						dificuldadeConvertida = "0.125f";
 					}
 				}else {
 					dificuldadeConvertida = cmbDificuldade.getSelectedItem().toString();
@@ -379,13 +398,38 @@ public class telaCadastroMonstro extends JFrame {
 				MonstroDAO objMonstroDAO = new MonstroDAO();
 				objMonstroDAO.cadastrarMonstro(objMonstroDTO);
 				
+				//Limpa campos
+				limpar();
+				txtPAcoes.setText("");
+				txtPAcoesLendarias.setText("");
+				txtPMagia.setText("");
+
 			}
 		});
-		btnCadastrar.setBounds(290, 467, 169, 35);
+		btnCadastrar.setBounds(148, 459, 169, 35);
 		contentPane.add(btnCadastrar);
-		
-		
 		}
-
 	
+	public void limpar () {
+		txtFNome.setText("");
+		txtFCarisma.setText("");
+		txtFClasseArmadura.setText("");
+		txtFConstituicao.setText("");
+		txtFDestreza.setText("");
+		txtFForca.setText("");
+		txtFImunidade.setText("");
+		txtFImunidadeCondicao.setText("");
+		txtFInteligencia.setText("");
+		txtFLingua.setText("");
+		txtFPericias.setText("");
+		txtFQtdDadoVida.setText("");
+		txtFResistencia.setText("");
+		txtFSabedoria.setText("");
+		txtFSentidos.setText("");
+		txtFTesteResistencia.setText("");
+		txtFTipo.setText("");
+		txtFVidaExtra.setText("");
+		txtFVulnerabilidade.setText("");
+
+	}
 }

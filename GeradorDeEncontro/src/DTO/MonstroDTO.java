@@ -165,5 +165,111 @@ public class MonstroDTO {
 	}
 	
 	
+	public void acertaDificuldade() {
+		int condicao = Math.round(dificuldade);
+		
+		switch (condicao) {
+		case 1: 
+			dificuldade = 200;
+			break;
+		case 2:
+			dificuldade = 450;
+			break;
+		case 3:
+			dificuldade = 700;
+			break;
+		case 4:
+			dificuldade = 1100;
+			break;
+		case 5:
+			dificuldade = 1800;
+			break;
+		case 6:
+			dificuldade = 2300;
+			break;
+		case 7:
+			dificuldade = 2900;
+			break;
+		case 8:
+			dificuldade = 3900;
+			break;
+		case 9:
+			dificuldade = 5000;
+			break;
+		case 10:
+			dificuldade = 5900;
+			break;
+		case 11:
+			dificuldade = 7200;
+			break;
+		case 12:
+			dificuldade = 8400;
+			break;
+		case 13:
+			dificuldade = 10000;
+			break;
+		case 14:
+			dificuldade = 11500;
+			break;
+		case 15:
+			dificuldade = 13000;
+			break;
+		case 16:
+			dificuldade = 15000;
+			break;
+		case 17:
+			dificuldade = 18000;
+			break;
+		case 18:
+			dificuldade = 20000;
+			break;
+		case 19:
+			dificuldade = 22000;
+			break;
+		case 20:
+			dificuldade = 25000;
+			break;
+		case 21:
+			dificuldade = 33000;
+			break;
+		case 22:
+			dificuldade = 41000;
+			break;
+		case 23:
+			dificuldade = 50000;
+			break;
+		case 24:
+			dificuldade = 62000;
+			break;
+		case 25:
+			dificuldade = 75000;
+			break;
+		case 26:
+			dificuldade = 90000;
+			break;
+		case 27:
+			dificuldade = 105000;
+			break;
+		case 28:
+			dificuldade = 120000;
+			break;
+		case 29:
+			dificuldade = 135000;
+			break;
+		case 30:
+			dificuldade = 155000;
+			break;
+		default:
+			if (dificuldade == 0.125f) {
+				dificuldade = 25;
+			}else if (dificuldade == 0.25f) {
+				dificuldade = 50;
+			}else if (dificuldade == 0.5f) {
+				dificuldade = (int) 100;
+			}
+		}
+	}
+	
+	
 	
 }

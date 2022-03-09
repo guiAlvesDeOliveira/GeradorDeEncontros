@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -19,7 +20,7 @@ import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-import br.com.geradorDeEncontro.controller.CriadorDeEncontro;
+import DTO.MonstroDTO;
 
 public class telaEncontroAleatorio extends JFrame {
 
@@ -129,16 +130,9 @@ public class telaEncontroAleatorio extends JFrame {
 					if(chbxEncontroUnico.isSelected()) {
 						encontroUnico = true;
 					}
-					
-					boolean sucesso = false;
+
 					try {
-						CriadorDeEncontro criador = new CriadorDeEncontro();
-						sucesso = criador.criaEncontro(dificuldade, nvlPlayer, qtdPlayer, encontroUnico);
-						if (sucesso==true) {
-							JOptionPane.showMessageDialog(null, "deu boa");
-						}else {
-							JOptionPane.showMessageDialog(null, "deu ruim");
-						}
+
 					}catch (Exception ex) {
 						JOptionPane.showMessageDialog(null, "Erro" + ex.getMessage());
 					}

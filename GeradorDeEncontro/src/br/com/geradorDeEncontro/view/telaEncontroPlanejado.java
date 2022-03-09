@@ -10,8 +10,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-import br.com.geradorDeEncontro.controller.CriadorDeEncontro;
-
 import java.awt.Color;
 import javax.swing.JRadioButton;
 import java.awt.GridLayout;
@@ -151,16 +149,8 @@ public class telaEncontroPlanejado extends JFrame {
 					encontroUnico = true;
 				}
 				
-				boolean sucesso = false;
 				try {
-					CriadorDeEncontro criador = new CriadorDeEncontro();
-					sucesso = criador.criaEncontro(dificuldade, nvlPlayer, qtdPlayer, terreno, encontroUnico);
-					if (sucesso==true) {
-						JOptionPane.showMessageDialog(null, "deu boa");
-					}else {
-						JOptionPane.showMessageDialog(null, "não deu boa");
-					}
-						
+
 				}catch (Exception ex){
 					JOptionPane.showMessageDialog(null, "Erro" + ex.getMessage());
 				}
