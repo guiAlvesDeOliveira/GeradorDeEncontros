@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import DTO.MonstroDTO;
+import br.com.geradorDeEncontro.model.Encontro;
 
 public class MonstroDAO {
 
@@ -16,7 +17,7 @@ public class MonstroDAO {
 	PreparedStatement pstm;
 	ResultSet rs;
 	ArrayList<MonstroDTO> lista = new ArrayList<>();
-	
+
 	public void cadastrarMonstro(MonstroDTO objMonstroDto) {
 		String sql = "insert into monstro (nome, tamanho, tipo, classeDeArmadura, dadoDeVida, quantidadeDadosVida, vidaExtra, "
 				+ "forca, destreza, constituicao, inteligencia, sabedoria, carisma, testeResistencia, pericias, vulnerabilidade, "
@@ -64,9 +65,8 @@ public class MonstroDAO {
 		
 	}
 	
-	public ArrayList<MonstroDTO> consultarMonstro(){
-		MonstroDTO objMonstroDTO = new MonstroDTO();
-		String sql = "select * from vw_ConsultaMonstro where dificuldade < " + objMonstroDTO.getDificuldade() + ";";
+	public ArrayList<MonstroDTO> consultarMonstro(int dificuldade){
+		String sql = "select * from vw_ConsultaMonstro where dificuldade < " + dificuldade + ";";
 		conn = new ConexaoDAO().conectaDB();
 
 		try {
@@ -77,10 +77,10 @@ public class MonstroDAO {
 				MonstroDTO objMonstroDto = new MonstroDTO();
 				objMonstroDto.setId(rs.getInt("Id"));
 				objMonstroDto.setNome(rs.getString("nome"));
-				objMonstroDTO.setQtdDadosVida(rs.getInt("quantidadeDadosVida"));
-				objMonstroDTO.setVidaExtra(rs.getInt("vidaExtra"));
-				objMonstroDTO.setDadoDeVida(rs.getString("dadoDeVida"));
-				objMonstroDTO.setDificuldade(rs.getInt("dificuldade"));
+				objMonstroDto.setQtdDadosVida(rs.getInt("quantidadeDadosVida"));
+				objMonstroDto.setVidaExtra(rs.getInt("vidaExtra"));
+				objMonstroDto.setDadoDeVida(rs.getString("dadoDeVida"));
+				objMonstroDto.setDificuldade(rs.getFloat("dificuldade"));
 				
 				lista.add(objMonstroDto);
 				

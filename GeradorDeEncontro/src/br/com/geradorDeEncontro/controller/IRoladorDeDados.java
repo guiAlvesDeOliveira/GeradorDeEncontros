@@ -22,7 +22,7 @@ public interface IRoladorDeDados {
 		return dado;
 	};
 	
-	public default int roldarD10() {
+	public default int rolarD10() {
 		Random rolar = new Random();
 		int dado = rolar.nextInt(10) + 1;
 		return dado;

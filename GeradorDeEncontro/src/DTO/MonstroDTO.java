@@ -1,8 +1,10 @@
 package DTO;
 
-public class MonstroDTO {
+import br.com.geradorDeEncontro.controller.IRoladorDeDados;
 
-	private int id, classeDeArmadura, qtdDadosVida, vidaExtra, forca, destreza, constituicao, inteligencia, sabedoria, carisma;
+public class MonstroDTO implements IRoladorDeDados {
+
+	private int id, classeDeArmadura, qtdDadosVida, vidaExtra, forca, destreza, constituicao, inteligencia, sabedoria, carisma, vida;
 	private float dificuldade;
 	private String nome, tamanho, tipo, dadoDeVida, testeResistencia, pericias, vulnerabilidades, resistencia, imunidade, imunidadeCondicao,
 		sentidos, lingua, acoes, magias, acoesLendarias;
@@ -163,8 +165,65 @@ public class MonstroDTO {
 	public void setAcoesLendarias(String acoesLendarias) {
 		this.acoesLendarias = acoesLendarias;
 	}
-	
-	
+	public int getVida(){ return this.vida; }
+	public void setVida(int vida){ this.vida = vida; }
+
+
+	@Override
+	public String toString() {
+		return "MonstroDTO{" +
+				"vida=" + vida +
+				", classeDeArmadura=" + classeDeArmadura + "\n" +
+				", qtdDadosVida=" + qtdDadosVida + "\n" +
+				", vidaExtra=" + vidaExtra + "\n" +
+				", forca=" + forca + "\n" +
+				", destreza=" + destreza + "\n" +
+				", constituicao=" + constituicao + "\n" +
+				", inteligencia=" + inteligencia + "\n" +
+				", sabedoria=" + sabedoria + "\n" +
+				", carisma=" + carisma + "\n" +
+				", dificuldade=" + dificuldade + "\n" +
+				", nome='" + nome + '\'' + "\n" +
+				", tamanho='" + tamanho + '\'' + "\n" +
+				", tipo='" + tipo + '\'' + "\n" +
+				", dadoDeVida='" + dadoDeVida + '\'' + "\n" +
+				", testeResistencia='" + testeResistencia + '\'' + "\n" +
+				", pericias='" + pericias + '\'' + "\n" +
+				", vulnerabilidades='" + vulnerabilidades + '\'' + "\n" +
+				", resistencia='" + resistencia + '\'' + "\n" +
+				", imunidade='" + imunidade + '\'' + "\n" +
+				", imunidadeCondicao='" + imunidadeCondicao + '\'' + "\n" +
+				", sentidos='" + sentidos + '\'' + "\n" +
+				", lingua='" + lingua + '\'' + "\n" +
+				", acoes='" + acoes + '\'' + "\n" +
+				", magias='" + magias + '\'' + "\n" +
+				", acoesLendarias='" + acoesLendarias + '\'' +
+				'}';
+	}
+
+	public String geraMonstro(MonstroDTO monstroDTO){
+		for (int i = 0; i <= monstroDTO.getQtdDadosVida(); i++){
+			if (monstroDTO.getDadoDeVida() == "d4"){
+				this.setVida(rolarD4());
+			}else if(monstroDTO.getDadoDeVida() == "d6"){
+				this.setVida(rolarD6());
+			}else if(monstroDTO.getDadoDeVida() == "d8"){
+				this.setVida(rolarD8());
+			}else if(monstroDTO.getDadoDeVida() == "d10"){
+				this.setVida(rolarD10());
+			}else if(monstroDTO.getDadoDeVida() == "d12"){
+				this.setVida(rolarD12());
+			}else if(monstroDTO.getDadoDeVida() == "d20"){
+				this.setVida(rolarD20());
+			}else if(monstroDTO.getDadoDeVida() == "d100"){
+				this.setVida(rolarD100());
+			}
+		}
+		this.setVida(this.getVida() + this.getVidaExtra());
+
+		return this.toString();
+	}
+
 	public void acertaDificuldade() {
 		int condicao = Math.round(dificuldade);
 		
@@ -261,13 +320,15 @@ public class MonstroDTO {
 			break;
 		default:
 			if (dificuldade == 0.125f) {
-				dificuldade = 25;
+				dificuldade = (int) 25;
 			}else if (dificuldade == 0.25f) {
-				dificuldade = 50;
+				dificuldade = (int) 50;
 			}else if (dificuldade == 0.5f) {
 				dificuldade = (int) 100;
 			}
 		}
+
+
 	}
 	
 	
