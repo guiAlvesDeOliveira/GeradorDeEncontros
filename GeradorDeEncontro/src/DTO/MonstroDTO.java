@@ -173,7 +173,7 @@ public class MonstroDTO implements IRoladorDeDados {
 	public String toString() {
 		return "MonstroDTO{" +
 				"vida=" + vida +
-				", classeDeArmadura=" + classeDeArmadura + "\n" +
+				/*", classeDeArmadura=" + classeDeArmadura + "\n" +
 				", qtdDadosVida=" + qtdDadosVida + "\n" +
 				", vidaExtra=" + vidaExtra + "\n" +
 				", forca=" + forca + "\n" +
@@ -182,9 +182,9 @@ public class MonstroDTO implements IRoladorDeDados {
 				", inteligencia=" + inteligencia + "\n" +
 				", sabedoria=" + sabedoria + "\n" +
 				", carisma=" + carisma + "\n" +
-				", dificuldade=" + dificuldade + "\n" +
+				", dificuldade=" + dificuldade + "\n" + */
 				", nome='" + nome + '\'' + "\n" +
-				", tamanho='" + tamanho + '\'' + "\n" +
+				/* ", tamanho='" + tamanho + '\'' + "\n" +
 				", tipo='" + tipo + '\'' + "\n" +
 				", dadoDeVida='" + dadoDeVida + '\'' + "\n" +
 				", testeResistencia='" + testeResistencia + '\'' + "\n" +
@@ -197,7 +197,7 @@ public class MonstroDTO implements IRoladorDeDados {
 				", lingua='" + lingua + '\'' + "\n" +
 				", acoes='" + acoes + '\'' + "\n" +
 				", magias='" + magias + '\'' + "\n" +
-				", acoesLendarias='" + acoesLendarias + '\'' +
+				", acoesLendarias='" + acoesLendarias + '\'' + */
 				'}';
 	}
 
