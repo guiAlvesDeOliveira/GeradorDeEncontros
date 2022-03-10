@@ -171,22 +171,21 @@ public class MonstroDTO implements IRoladorDeDados {
 
 	@Override
 	public String toString() {
-		return "MonstroDTO{" +
+		return "Nome='" + nome + '\'' + "\n" +
 				"vida=" + vida +
-				/*", classeDeArmadura=" + classeDeArmadura + "\n" +
-				", qtdDadosVida=" + qtdDadosVida + "\n" +
-				", vidaExtra=" + vidaExtra + "\n" +
+				", classeDeArmadura=" + classeDeArmadura + "\n" +
+				//", qtdDadosVida=" + qtdDadosVida + "\n" +
+				//", vidaExtra=" + vidaExtra + "\n" +
 				", forca=" + forca + "\n" +
 				", destreza=" + destreza + "\n" +
 				", constituicao=" + constituicao + "\n" +
 				", inteligencia=" + inteligencia + "\n" +
 				", sabedoria=" + sabedoria + "\n" +
 				", carisma=" + carisma + "\n" +
-				", dificuldade=" + dificuldade + "\n" + */
-				", nome='" + nome + '\'' + "\n" +
-				/* ", tamanho='" + tamanho + '\'' + "\n" +
+				//", dificuldade=" + dificuldade + "\n" +
+				// ", tamanho='" + tamanho + '\'' + "\n" +
 				", tipo='" + tipo + '\'' + "\n" +
-				", dadoDeVida='" + dadoDeVida + '\'' + "\n" +
+				//", dadoDeVida='" + dadoDeVida + '\'' + "\n" +
 				", testeResistencia='" + testeResistencia + '\'' + "\n" +
 				", pericias='" + pericias + '\'' + "\n" +
 				", vulnerabilidades='" + vulnerabilidades + '\'' + "\n" +
@@ -197,26 +196,27 @@ public class MonstroDTO implements IRoladorDeDados {
 				", lingua='" + lingua + '\'' + "\n" +
 				", acoes='" + acoes + '\'' + "\n" +
 				", magias='" + magias + '\'' + "\n" +
-				", acoesLendarias='" + acoesLendarias + '\'' + */
+				", acoesLendarias='" + acoesLendarias + '\'' +
 				'}';
 	}
 
 	public String geraMonstro(MonstroDTO monstroDTO){
-		for (int i = 0; i <= monstroDTO.getQtdDadosVida(); i++){
-			if (monstroDTO.getDadoDeVida() == "d4"){
-				this.setVida(rolarD4());
-			}else if(monstroDTO.getDadoDeVida() == "d6"){
-				this.setVida(rolarD6());
-			}else if(monstroDTO.getDadoDeVida() == "d8"){
-				this.setVida(rolarD8());
-			}else if(monstroDTO.getDadoDeVida() == "d10"){
-				this.setVida(rolarD10());
-			}else if(monstroDTO.getDadoDeVida() == "d12"){
-				this.setVida(rolarD12());
-			}else if(monstroDTO.getDadoDeVida() == "d20"){
-				this.setVida(rolarD20());
-			}else if(monstroDTO.getDadoDeVida() == "d100"){
-				this.setVida(rolarD100());
+		this.setVida(0);
+		for (int i = 1; i <= monstroDTO.getQtdDadosVida(); i++){
+			if (monstroDTO.getDadoDeVida().equalsIgnoreCase("d4")){
+				this.setVida(this.getVida() + rolarD4());
+			}else if(monstroDTO.getDadoDeVida().equalsIgnoreCase("d6")){
+				this.setVida(this.getVida() + rolarD6());
+			}else if(monstroDTO.getDadoDeVida().equalsIgnoreCase("d8")){
+				this.setVida(this.getVida() + rolarD8());
+			}else if(monstroDTO.getDadoDeVida().equalsIgnoreCase("d10")){
+				this.setVida(this.getVida() + rolarD10());
+			}else if(monstroDTO.getDadoDeVida().equalsIgnoreCase("d12")){
+				this.setVida(this.getVida() + rolarD12());
+			}else if(monstroDTO.getDadoDeVida().equalsIgnoreCase("d20")){
+				this.setVida(this.getVida() + rolarD20());
+			}else if(monstroDTO.getDadoDeVida().equalsIgnoreCase("d100")){
+				this.setVida(this.getVida() + rolarD100());
 			}
 		}
 		this.setVida(this.getVida() + this.getVidaExtra());

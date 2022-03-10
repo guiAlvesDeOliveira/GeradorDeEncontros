@@ -102,10 +102,10 @@ public telaEncontroAleatorio() {
 	txtFNvlPlayer.setBounds(206, 51, 127, 20);
 	contentPane.add(txtFNvlPlayer);
 
-	JTextPane textPane = new JTextPane();
-	textPane.setVisible(false);
-	textPane.setBounds(37, 288, 719, 190);
-	contentPane.add(textPane);
+	JTextPane txtPResultado = new JTextPane();
+	txtPResultado.setVisible(false);
+	txtPResultado.setBounds(37, 288, 719, 190);
+	contentPane.add(txtPResultado);
 
 	JCheckBox chbxEncontroUnico = new JCheckBox("Encontro Unico");
 	chbxEncontroUnico.setBounds(236, 152, 97, 23);
@@ -137,6 +137,12 @@ btnGerarEncontro.addActionListener(new ActionListener() {
 				Monstro monstro = new Monstro();
 				Encontro encontro = new Encontro();
 				encontro.criaEncontro(dificuldade, qtdPlayer, nvlPlayer, encontroUnico);
+				txtPResultado.setVisible(true);
+				if (encontroUnico == true) {
+					txtPResultado.setText(encontro.getCaracteristicaUnica() + encontro.getMonstros());
+				}else {
+					txtPResultado.setText(encontro.getMonstros());
+				}
 			}catch (Exception ex) {
 				JOptionPane.showMessageDialog(null, "Erro" + ex.getMessage());
 			}
